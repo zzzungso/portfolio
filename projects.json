@@ -2,7 +2,7 @@
   {
     "id": "samsung-health",
     "name": "삼성 헬스",
-    "sub": "Achievement Badge System · UX · 모션 디자인",
+    "sub": "Achievement Badge System · UX · 모션 디자인ㅇㄹㅇㄹ",
     "cat": "UX · 모션",
     "thumb": "1_work/1_삼성헬스/장표 이미지/sh_2.png",
     "thumbType": "image",
@@ -271,5 +271,14 @@
         "s": "web/1_work/6_CJ/vls_28.webp"
       }
     ]
+  },
+  {
+    "id": "project-1783138873096",
+    "name": "새 프로젝트",
+    "sub": "",
+    "cat": "",
+    "thumb": "",
+    "thumbType": "image",
+    "media": []
   }
 ]
