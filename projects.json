@@ -4,64 +4,64 @@
     "name": "삼성 헬스",
     "sub": "Achievement Badge System · UX · 모션 디자인ㅇㄹㅇㄹ",
     "cat": "UX · 모션",
-    "thumb": "1_work/1_삼성헬스/장표 이미지/sh_2.png",
+    "thumb": "web/1_work/1_삼성헬스/sh_2.webp",
     "thumbType": "image",
     "media": [
       {
         "t": "video",
-        "s": "1_work/1_삼성헬스/영상/Samsung Galaxy Achievement Badge System.mp4"
+        "s": "web/1_work/1_삼성헬스/0_Samsung Galaxy Achievement Badge System.mp4"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_1.png"
+        "s": "web/1_work/1_삼성헬스/sh_1.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_2.png"
+        "s": "web/1_work/1_삼성헬스/sh_2.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_3.png"
+        "s": "web/1_work/1_삼성헬스/sh_3.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_4.png"
+        "s": "web/1_work/1_삼성헬스/sh_4.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_5.png"
+        "s": "web/1_work/1_삼성헬스/sh_5.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/sh_6.png"
+        "s": "web/1_work/1_삼성헬스/sh_6.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/0_summary.png"
+        "s": "web/1_work/1_삼성헬스/0_summary.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/1_exercise badge.png"
+        "s": "web/1_work/1_삼성헬스/1_exercise badge.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/2_1.png"
+        "s": "web/1_work/1_삼성헬스/2_1.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/2_2.png"
+        "s": "web/1_work/1_삼성헬스/2_2.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/3_daily activity.png"
+        "s": "web/1_work/1_삼성헬스/3_daily activity.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/4_sleep_animals_global.png"
+        "s": "web/1_work/1_삼성헬스/4_sleep_animals_global.webp"
       },
       {
         "t": "image",
-        "s": "1_work/1_삼성헬스/장표 이미지/5_personal best.png"
+        "s": "web/1_work/1_삼성헬스/5_personal best.webp"
       }
     ],
     "description": "삼성헬스의 성취 배지 시스템을 3D 모션 디자인으로 설계하고 제작했습니다."
