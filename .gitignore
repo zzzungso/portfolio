@@ -1,0 +1,19 @@
+# Local editor data (never committed — published version goes to projects.json)
+projects_local.json
+
+# Original high-res media (optimized versions go to web/)
+1_work/
+
+# Local server & editor (not needed on public site)
+server.py
+editor.html
+generate-prompt.md
+publish_config.json
+publish_map.json
+글 모음/
+
+# System
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
