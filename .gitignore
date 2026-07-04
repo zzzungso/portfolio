@@ -2,7 +2,7 @@
 projects_local.json
 
 # Original high-res media (optimized versions go to web/)
-1_work/
+/1_work/
 
 # Local server & editor (not needed on public site)
 server.py
