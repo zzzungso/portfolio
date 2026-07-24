@@ -120,21 +120,58 @@
   },
   {
     "id": "onboarding",
-    "name": "온보딩",
+    "name": "Galaxy Wearable synk visual effects (OOBE)",
     "sub": "앱 온보딩 UX · 모션 디자인",
     "cat": "UX · 모션",
     "thumb": "web/1_work/4_온보딩/00_full_영상_16-9.mp4",
     "thumbType": "video",
     "media": [
       {
-        "t": "video",
-        "s": "web/1_work/4_온보딩/00_full_영상_16-9.mp4"
+        "t": "image",
+        "s": "web/1_work/4_온보딩/00_Thumbnail.webp"
       },
       {
         "t": "video",
-        "s": "web/1_work/4_온보딩/01_welcome.mp4"
+        "s": "web/1_work/4_온보딩/01_samsung_onboarding_portfolio.mp4"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/02_OOBE.webp"
+      },
+      {
+        "t": "video",
+        "s": "web/1_work/4_온보딩/02_welcome_4-5.mp4"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/03_process.webp"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/07_1_loading_light.webp"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/07_2_welcome.webp"
+      },
+      {
+        "t": "video",
+        "s": "web/1_work/4_온보딩/06_1_synk_light.mp4"
+      },
+      {
+        "t": "video",
+        "s": "web/1_work/4_온보딩/06_2_synk_dark.mp4"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/05_2_loading_dark.webp"
+      },
+      {
+        "t": "image",
+        "s": "web/1_work/4_온보딩/08_Finish_dark.webp"
       }
-    ]
+    ],
+    "description": "갤럭시 웨어러블 앱의 초기 사용 경험(OOBE)을 개선하기 위해 온보딩 플로우를 설계했습니다. 복잡한 설정 절차를 직관적인 단계별 인터페이스로 재구성하고, 각 화면 전환에 정교한 모션 효과를 적용했습니다. PIN 입력, 데이터 싱크, 로딩 상태 등 주요 단계에서 명확한 시각적 피드백을 제공했습니다. 라이트/다크 모드를 모두 지원하여 다양한 환경에서의 일관성을 확보했습니다. 이를 통해 사용자가 초기 설정을 쉽고 즐겁게 완료할 수 있는 경험을 완성했습니다."
   },
   {
     "id": "juno-hair",

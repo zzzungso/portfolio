@@ -271,6 +271,17 @@ header {
   padding: 8px 170px 0;
 }
 
+/* 그리드 행 (2/4분할) */
+.media-grid-row {
+  width: 100%;
+  display: grid;
+  gap: 3px;
+}
+.grid-cell { min-width: 0; }
+.grid-cell img,
+.grid-cell video { width: 100%; display: block; }
+.grid-cell .media-caption { padding: 6px 8px 0; }
+
 .detail-info-col {
   position: sticky;
   top: var(--hh);
@@ -762,44 +773,27 @@ function goDetail(p, idx) {
 
   const col = document.getElementById('d-media');
   col.innerHTML = '';
-  p.media.forEach(item => {
-    const group = document.createElement('div');
-    const wrap  = document.createElement('div');
-    let el;
-    if (item.t === 'video') {
-      group.className = 'media-group is-video';
-      wrap.className  = 'media-item is-video';
-      el = document.createElement('video');
-      el.src         = item.s;
-      el.muted       = true;
-      el.loop        = true;
-      el.playsInline = true;
-      el.preload     = 'metadata';
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', () =>
-        el.paused ? el.play().catch(() => {}) : el.pause()
-      );
+
+  let i = 0;
+  while (i < p.media.length) {
+    const item = p.media[i];
+    let runEnd = i + 1;
+    if (item.grp) {
+      while (runEnd < p.media.length && p.media[runEnd].grp === item.grp) runEnd++;
+    }
+    const runLen = runEnd - i;
+
+    if (item.grp && runLen > 1) {
+      const row = document.createElement('div');
+      row.className = 'media-grid-row';
+      row.style.gridTemplateColumns = `repeat(${runLen}, 1fr)`;
+      for (let k = i; k < runEnd; k++) row.appendChild(buildGridCell(p.media[k]));
+      col.appendChild(row);
     } else {
-      group.className = 'media-group is-image';
-      wrap.className  = 'media-item is-image';
-      el = document.createElement('img');
-      el.src      = item.s;
-      el.loading  = 'lazy';
-      el.decoding = 'async';
-      if (item.s.toLowerCase().endsWith('.png')) {
-        wrap.style.background = '#111111';
-      }
+      col.appendChild(buildMediaGroup(item));
     }
-    wrap.appendChild(el);
-    group.appendChild(wrap);
-    if (item.c) {
-      const cap = document.createElement('p');
-      cap.className   = 'media-caption';
-      cap.textContent = item.c;
-      group.appendChild(cap);
-    }
-    col.appendChild(group);
-  });
+    i = runEnd;
+  }
 
   history.pushState({ view: 'detail', id: p.id }, '', `#${p.id}`);
   vDetail.classList.remove('panel-open');
@@ -816,6 +810,79 @@ function goDetail(p, idx) {
   }, { threshold: 0.2 });
 
   col.querySelectorAll('video').forEach(v => _vpObserver.observe(v));
+}
+
+function buildMediaGroup(item) {
+  const group = document.createElement('div');
+  const wrap  = document.createElement('div');
+  let el;
+  if (item.t === 'video') {
+    group.className = 'media-group is-video';
+    wrap.className  = 'media-item is-video';
+    el = document.createElement('video');
+    el.src         = item.s;
+    el.muted       = true;
+    el.loop        = true;
+    el.playsInline = true;
+    el.preload     = 'metadata';
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () =>
+      el.paused ? el.play().catch(() => {}) : el.pause()
+    );
+  } else {
+    group.className = 'media-group is-image';
+    wrap.className  = 'media-item is-image';
+    el = document.createElement('img');
+    el.src      = item.s;
+    el.loading  = 'lazy';
+    el.decoding = 'async';
+    if (item.s.toLowerCase().endsWith('.png')) {
+      wrap.style.background = '#111111';
+    }
+  }
+  wrap.appendChild(el);
+  group.appendChild(wrap);
+  if (item.c) {
+    const cap = document.createElement('p');
+    cap.className   = 'media-caption';
+    cap.textContent = item.c;
+    group.appendChild(cap);
+  }
+  return group;
+}
+
+function buildGridCell(item) {
+  const cell = document.createElement('div');
+  cell.className = 'grid-cell';
+  let el;
+  if (item.t === 'video') {
+    el = document.createElement('video');
+    el.src         = item.s;
+    el.muted       = true;
+    el.loop        = true;
+    el.playsInline = true;
+    el.preload     = 'metadata';
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () =>
+      el.paused ? el.play().catch(() => {}) : el.pause()
+    );
+  } else {
+    el = document.createElement('img');
+    el.src      = item.s;
+    el.loading  = 'lazy';
+    el.decoding = 'async';
+    if (item.s.toLowerCase().endsWith('.png')) {
+      cell.style.background = '#111111';
+    }
+  }
+  cell.appendChild(el);
+  if (item.c) {
+    const cap = document.createElement('p');
+    cap.className   = 'media-caption';
+    cap.textContent = item.c;
+    cell.appendChild(cap);
+  }
+  return cell;
 }
 
 function goGrid() {
