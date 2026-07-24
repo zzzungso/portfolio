@@ -123,8 +123,8 @@
     "name": "Galaxy Wearable synk visual effects (OOBE)",
     "sub": "앱 온보딩 UX · 모션 디자인",
     "cat": "UX · 모션",
-    "thumb": "web/1_work/4_온보딩/00_full_영상_16-9.mp4",
-    "thumbType": "video",
+    "thumb": "web/1_work/4_온보딩/00_Thumbnail.webp",
+    "thumbType": "image",
     "media": [
       {
         "t": "image",
@@ -136,11 +136,13 @@
       },
       {
         "t": "image",
-        "s": "web/1_work/4_온보딩/02_OOBE.webp"
+        "s": "web/1_work/4_온보딩/02_OOBE.webp",
+        "grp": "g1784881203873"
       },
       {
         "t": "video",
-        "s": "web/1_work/4_온보딩/02_welcome_4-5.mp4"
+        "s": "web/1_work/4_온보딩/02_welcome_4-5.mp4",
+        "grp": "g1784881203873"
       },
       {
         "t": "image",
@@ -148,23 +150,23 @@
       },
       {
         "t": "image",
-        "s": "web/1_work/4_온보딩/07_1_loading_light.webp"
+        "s": "web/1_work/4_온보딩/07_1_loading_light.webp",
+        "grp": "g1784881266074"
       },
       {
         "t": "image",
-        "s": "web/1_work/4_온보딩/07_2_welcome.webp"
+        "s": "web/1_work/4_온보딩/07_2_welcome.webp",
+        "grp": "g1784881266074"
       },
       {
         "t": "video",
-        "s": "web/1_work/4_온보딩/06_1_synk_light.mp4"
+        "s": "web/1_work/4_온보딩/06_1_synk_light.mp4",
+        "grp": "g1784881277989"
       },
       {
         "t": "video",
-        "s": "web/1_work/4_온보딩/06_2_synk_dark.mp4"
-      },
-      {
-        "t": "image",
-        "s": "web/1_work/4_온보딩/05_2_loading_dark.webp"
+        "s": "web/1_work/4_온보딩/06_2_synk_dark.mp4",
+        "grp": "g1784881277989"
       },
       {
         "t": "image",
