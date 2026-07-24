@@ -175,9 +175,9 @@
   },
   {
     "id": "juno-hair",
-    "name": "주노헤어",
-    "sub": "웹 포트폴리오 · SNS 콘텐츠 제작",
-    "cat": "웹디자인 · 포트폴리오",
+    "name": "JUNO Hair Portfolio motion",
+    "sub": "Brand portfolio",
+    "cat": "포트폴리오",
     "thumb": "web/1_work/5_주노헤어/1.webp",
     "thumbType": "image",
     "media": [
@@ -286,7 +286,8 @@
         "s": "web/1_work/5_주노헤어/26.webp"
       }
     ],
-    "description": "주노헤어 브랜드의 디지털 입지 확보를 위해 웹 포트폴리오 사이트를 기획·제작했습니다. 시술 사례와 브랜드 스토리를 효과적으로 전달할 수 있도록 비주얼 중심의 구성과 사용자 경험을 고려한 인터페이스를 설계했습니다. 이와 함께 인스타그램 및 주요 SNS 채널을 위한 콘텐츠도 병행 제작하여 채널 간 일관된 브랜드 이미지를 구축했습니다. 완성된 포트폴리오는 고객 유입과 브랜드 신뢰도 향상에 기여하는 결과물로 마무리되었습니다."
+    "description": "주노헤어 브랜드의 디지털 입지 확보를 목표로 웹 포트폴리오 사이트를 기획·제작했습니다. 시술 사례와 브랜드 스토리를 효과적으로 전달하기 위해 비주얼 중심의 구성과 직관적인 인터페이스를 설계했습니다. 인스타그램과 주요 SNS 채널용 콘텐츠를 병행 제작하여 전 채널에서 일관된 브랜드 이미지를 구축했습니다. 결과적으로 웹 포트폴리오는 고객 유입 증대와 브랜드 신뢰도 향상에 기여하는 완성된 결과물이 되었습니다.",
+    "descriptionEn": "Designed and developed a web portfolio to establish Juno Hair's digital presence and market positioning. The site features a visually-driven layout that effectively showcases service examples and brand identity, complemented by an intuitive user interface. Produced cohesive social media content for Instagram and key platforms to reinforce consistent brand messaging across all channels. The completed portfolio successfully drove customer inquiries and strengthened overall brand credibility."
   },
   {
     "id": "cj",
