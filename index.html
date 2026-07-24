@@ -292,8 +292,8 @@ header {
   padding: 0 24px;
 }
 .grid-cell { position: relative; min-width: 0; }
-.grid-cell img,
-.grid-cell video { position: relative; z-index: 1; width: 100%; display: block; }
+.grid-cell img:not(.media-group-bg),
+.grid-cell video:not(.media-group-bg) { position: relative; z-index: 1; width: 100%; display: block; }
 .grid-cell .media-caption { padding: 6px 8px 0; }
 
 /* ══════════════════════════════
