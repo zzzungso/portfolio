@@ -57,11 +57,13 @@
       },
       {
         "t": "image",
-        "s": "web/1_work/1_삼성헬스/4_sleep_animals_global.webp"
+        "s": "web/1_work/1_삼성헬스/4_sleep_animals_global.webp",
+        "grp": "g1784886755940"
       },
       {
         "t": "image",
-        "s": "web/1_work/1_삼성헬스/5_personal best.webp"
+        "s": "web/1_work/1_삼성헬스/5_personal best.webp",
+        "grp": "g1784886755940"
       }
     ],
     "description": "삼성헬스의 성취 배지 시스템을 3D 모션 디자인으로 설계하고 제작했습니다."
