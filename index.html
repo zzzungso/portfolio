@@ -559,126 +559,21 @@ new BroadcastChannel('portfolio-sync').onmessage = () => {
     .catch(() => {});
 };
 
-let PROJECTS;
-try {
-  PROJECTS = await fetch('projects.json?t=' + Date.now()).then(r => r.json());
-} catch {
-  PROJECTS = [
-  {
-    id: 'samsung-health',
-    name: '삼성 헬스',
-    sub: 'Achievement Badge System · UX · 모션 디자인',
-    cat: 'UX · 모션',
-    thumb: '1_work/1_삼성헬스/장표 이미지/sh_1.png',
-    thumbType: 'image',
-    media: [
-      { t: 'video', s: '1_work/1_삼성헬스/영상/Samsung Galaxy Achievement Badge System.mp4' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/0_summary.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_1.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_2.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_3.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_4.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_5.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/sh_6.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/1_exercise badge.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/2_1.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/2_2.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/3_daily activity.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/4_sleep_animals_global.png' },
-      { t: 'image', s: '1_work/1_삼성헬스/장표 이미지/5_personal best.png' },
-    ]
-  },
-  {
-    id: 'watch-motion',
-    name: '갤럭시 워치',
-    sub: '모션 가이드라인 · 모션 디자인',
-    cat: '모션 가이드',
-    thumb: '1_work/2_워치모션가이드/mp4/01_Always_Round.mp4',
-    thumbType: 'video',
-    media: [
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/Responsive_Gravity_(with title).mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/01_Always_Round.mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/02_Focused (1).mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/03_Physical Depth.mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/05_Subtle.mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/06_Lively.mp4' },
-      { t: 'video', s: '1_work/2_워치모션가이드/mp4/Responsive_Gravity.mp4' },
-    ]
-  },
-  {
-    id: 'olive-young',
-    name: '올리브영',
-    sub: 'BI 앱 리뉴얼 · 브랜드 · 앱 디자인',
-    cat: '브랜드 · 앱',
-    thumb: '1_work/3_올리브영/olive_young_bi_application_renewal_project (2160p).mp4',
-    thumbType: 'video',
-    media: [
-      { t: 'video', s: '1_work/3_올리브영/olive_young_bi_application_renewal_project (2160p).mp4' },
-    ]
-  },
-  {
-    id: 'onboarding',
-    name: '온보딩',
-    sub: '앱 온보딩 UX · 모션 디자인',
-    cat: 'UX · 모션',
-    thumb: '1_work/4_온보딩/00_full_영상_16-9.mp4',
-    thumbType: 'video',
-    media: [
-      { t: 'video', s: '1_work/4_온보딩/00_full_영상_16-9.mp4' },
-      { t: 'video', s: '1_work/4_온보딩/01_welcome.mp4' },
-    ]
-  },
-  {
-    id: 'juno-hair',
-    name: '주노헤어',
-    sub: '브랜드 · SNS 콘텐츠 · 웹 디자인',
-    cat: '브랜드 · 콘텐츠',
-    thumb: '1_work/5_주노헤어/1.jpg',
-    thumbType: 'image',
-    media: [
-      { t: 'video', s: '1_work/5_주노헤어/juno_portfolio_web2.mp4' },
-      { t: 'video', s: '1_work/5_주노헤어/juno_portfolio_sns.mp4' },
-      { t: 'image', s: '1_work/5_주노헤어/1.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/2.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/3.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/4.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/5.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/6.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/7.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/8.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/9.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/10.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/11.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/12.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/13.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/14.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/15.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/16.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/18.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/19.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/20.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/21.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/22.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/23.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/24.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/25.jpg' },
-      { t: 'image', s: '1_work/5_주노헤어/26.jpg' },
-    ]
-  },
-  {
-    id: 'cj',
-    name: 'CJ',
-    sub: '브랜드 영상 콘텐츠',
-    cat: '브랜드 · 영상',
-    thumb: '1_work/6_CJ/Img.jpg',
-    thumbType: 'image',
-    media: [
-      { t: 'image', s: '1_work/6_CJ/Img.jpg' },
-      { t: 'image', s: '1_work/6_CJ/vls_28.jpg' },
-    ]
-  }
-  ]; // fallback end
-} // try-catch end
+let PROJECTS = null;
+for (let attempt = 0; attempt < 3 && !PROJECTS; attempt++) {
+  if (attempt > 0) await new Promise(r => setTimeout(r, 500));
+  try {
+    const res = await fetch('projects.json?t=' + Date.now());
+    if (!res.ok) continue;
+    PROJECTS = await res.json();
+  } catch { /* retry */ }
+}
+if (!PROJECTS) {
+  document.getElementById('works-grid').innerHTML =
+    '<div style="grid-column:1/-1;padding:60px 20px;text-align:center;color:var(--muted);font-size:13px;">'
+    + '프로젝트를 불러오지 못했습니다. 새로고침해주세요.</div>';
+  PROJECTS = [];
+}
 
 /* ── Render grid ── */
 const grid = document.getElementById('works-grid');
