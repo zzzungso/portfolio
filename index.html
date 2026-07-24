@@ -139,13 +139,12 @@ header {
 
 .work-info {
   display: grid;
-  grid-template-columns: 22px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: baseline;
   gap: 8px;
   padding: 9px 14px 14px;
   border-top: 1px solid var(--sep);
 }
-.work-num  { font-size: 11px; color: var(--muted); }
 .work-name { font-size: 12px; }
 .work-cat  { font-size: 11px; color: var(--muted); }
 
@@ -158,30 +157,32 @@ header {
   border-top: 1px solid var(--sep);
 }
 
-/* ── Hero: first media item + bleeding blurred backdrop + info, all in one dark block ── */
+/* ── Hero: info text + first media item, on one bleeding blurred backdrop ── */
 .detail-hero {
   position: relative;
   overflow: hidden;
   background: #111111;
-  padding-bottom: 44px;
+  padding-bottom: 30px;
 }
 .detail-hero-bg {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 130%;
-  height: 130%;
+  width: 200%;
+  height: 200%;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  filter: blur(90px) saturate(1.35) brightness(0.75);
+  filter: blur(110px) saturate(1.35) brightness(0.75);
   opacity: 0.9;
   z-index: 0;
   pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
 }
 .detail-hero-media {
   position: relative;
   z-index: 1;
-  padding: 50px;
+  padding: 24px;
 }
 .detail-hero-media.is-video { aspect-ratio: 16 / 9; }
 .detail-hero-media.is-video video {
@@ -192,15 +193,8 @@ header {
 .detail-hero-info {
   position: relative;
   z-index: 1;
-  padding: 8px 50px 0;
+  padding: 40px 24px 12px;
   color: #fff;
-}
-.detail-hero-info .d-num {
-  font-size: 11px;
-  color: rgba(255,255,255,.5);
-  letter-spacing: .08em;
-  margin-bottom: 10px;
-  font-family: 'SuisseCond', var(--font);
 }
 .detail-hero-info .d-title {
   font-size: clamp(24px, 2.4vw, 36px);
@@ -243,7 +237,7 @@ header {
 .media-item.is-video {
   aspect-ratio: 16 / 9;
   background: #000;
-  padding: 0 50px;
+  padding: 0 24px;
 }
 .media-item.is-video video {
   width: 100%;
@@ -254,7 +248,7 @@ header {
 
 /* 이미지: 좌우 패딩 */
 .media-item.is-image {
-  padding: 0 50px;
+  padding: 0 24px;
 }
 .media-item.is-image img {
   width: 100%;
@@ -267,7 +261,7 @@ header {
   font-size: 11px;
   line-height: 1.55;
   color: rgba(255,255,255,0.42);
-  padding: 8px 50px 0;
+  padding: 8px 24px 0;
   white-space: pre-wrap;
 }
 
@@ -276,7 +270,7 @@ header {
   width: 100%;
   display: grid;
   gap: 3px;
-  padding: 0 50px;
+  padding: 0 24px;
 }
 .grid-cell { min-width: 0; }
 .grid-cell img,
@@ -373,8 +367,8 @@ header {
   .media-item.is-video,
   .media-item.is-image,
   .media-caption,
-  .media-grid-row { padding-left: 20px; padding-right: 20px; }
-  .detail-hero-info { padding-left: 20px; padding-right: 20px; }
+  .media-grid-row { padding-left: 12px; padding-right: 12px; }
+  .detail-hero-info { padding-left: 12px; padding-right: 12px; }
   .about-side { position: static; border-top: 1px solid var(--sep); }
   .about-main { border-right: none; padding: 40px 24px; }
   .site-footer { grid-template-columns: 1fr 1fr; }
@@ -511,7 +505,6 @@ function buildGrid() {
     const info = document.createElement('div');
     info.className = 'work-info';
     info.innerHTML = `
-      <span class="work-num">${String(i+1).padStart(2,'0')}</span>
       <span class="work-name">${p.name}</span>
       <span class="work-cat">${p.cat}</span>`;
 
@@ -549,7 +542,7 @@ function stopDetailVideos() {
   vDetail.querySelectorAll('video').forEach(v => v.pause());
 }
 
-function buildHero(item, idx, p) {
+function buildHero(item, p) {
   const hero = document.getElementById('d-hero');
   hero.innerHTML = '';
   if (!item) return;
@@ -564,6 +557,24 @@ function buildHero(item, idx, p) {
     bg.decoding = 'async';
   }
   hero.appendChild(bg);
+
+  // title / sub / description — shown first, above the media
+  const info = document.createElement('div');
+  info.className = 'detail-hero-info';
+  const title = document.createElement('h1');
+  title.className = 'd-title';
+  title.textContent = p.name;
+  const sub = document.createElement('p');
+  sub.className = 'd-sub';
+  sub.textContent = p.sub;
+  info.append(title, sub);
+  if (p.description) {
+    const desc = document.createElement('p');
+    desc.className = 'd-desc';
+    desc.textContent = p.description;
+    info.appendChild(desc);
+  }
+  hero.appendChild(info);
 
   // foreground hero media (contained, matches the rest-of-media styling)
   const wrap = document.createElement('div');
@@ -581,27 +592,6 @@ function buildHero(item, idx, p) {
   }
   wrap.appendChild(fg);
   hero.appendChild(wrap);
-
-  // title / sub / description sit on the same bled background
-  const info = document.createElement('div');
-  info.className = 'detail-hero-info';
-  const num = document.createElement('p');
-  num.className = 'd-num';
-  num.textContent = String(idx + 1).padStart(2, '0');
-  const title = document.createElement('h1');
-  title.className = 'd-title';
-  title.textContent = p.name;
-  const sub = document.createElement('p');
-  sub.className = 'd-sub';
-  sub.textContent = p.sub;
-  info.append(num, title, sub);
-  if (p.description) {
-    const desc = document.createElement('p');
-    desc.className = 'd-desc';
-    desc.textContent = p.description;
-    info.appendChild(desc);
-  }
-  hero.appendChild(info);
 }
 
 function goDetail(p, idx) {
@@ -611,7 +601,7 @@ function goDetail(p, idx) {
   const heroItem  = media[0];
   const restMedia = media.slice(1);
 
-  buildHero(heroItem, idx, p);
+  buildHero(heroItem, p);
 
   const col = document.getElementById('d-media');
   col.innerHTML = '';
