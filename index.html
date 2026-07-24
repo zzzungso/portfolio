@@ -145,7 +145,6 @@ header {
   border-top: 1px solid var(--sep);
 }
 .work-name { font-size: 12px; }
-.work-cat  { font-size: 11px; color: var(--muted); }
 
 /* ══════════════════════════════
    DETAIL VIEW  — single column
@@ -201,15 +200,8 @@ header {
   font-weight: 700;
   letter-spacing: -.01em;
   line-height: 1.1;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   word-break: keep-all;
-}
-.detail-hero-info .d-sub {
-  font-size: 13px;
-  font-family: 'SuisseCond', var(--font);
-  color: rgba(255,255,255,.65);
-  line-height: 1.7;
-  margin-bottom: 18px;
 }
 .detail-hero-info .d-desc-row {
   display: grid;
@@ -530,9 +522,7 @@ function buildGrid() {
 
     const info = document.createElement('div');
     info.className = 'work-info';
-    info.innerHTML = `
-      <span class="work-name">${p.name}</span>
-      <span class="work-cat">${p.cat}</span>`;
+    info.innerHTML = `<span class="work-name">${p.name}</span>`;
 
     cell.appendChild(thumb);
     cell.appendChild(info);
@@ -584,16 +574,13 @@ function buildHero(item, p) {
   }
   hero.appendChild(bg);
 
-  // title / sub / description — shown first, above the media
+  // title / description — shown first, above the media
   const info = document.createElement('div');
   info.className = 'detail-hero-info';
   const title = document.createElement('h1');
   title.className = 'd-title';
   title.textContent = p.name;
-  const sub = document.createElement('p');
-  sub.className = 'd-sub';
-  sub.textContent = p.sub;
-  info.append(title, sub);
+  info.append(title);
   if (p.description && p.descriptionEn) {
     const row = document.createElement('div');
     row.className = 'd-desc-row';
