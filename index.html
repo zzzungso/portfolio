@@ -211,6 +211,12 @@ header {
   line-height: 1.7;
   margin-bottom: 18px;
 }
+.detail-hero-info .d-desc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+}
 .detail-hero-info .d-desc {
   font-size: 13px;
   font-family: var(--font);
@@ -219,6 +225,7 @@ header {
   white-space: pre-wrap;
   max-width: 720px;
 }
+.detail-hero-info .d-desc-row .d-desc { max-width: none; }
 
 .detail-media-col {
   min-width: 0;
@@ -387,6 +394,7 @@ header {
   .media-caption,
   .media-grid-row { padding-left: 12px; padding-right: 12px; }
   .detail-hero-info { padding-left: 12px; padding-right: 12px; }
+  .detail-hero-info .d-desc-row { grid-template-columns: 1fr; gap: 16px; }
   .about-side { position: static; border-top: 1px solid var(--sep); }
   .about-main { border-right: none; padding: 40px 24px; }
   .site-footer { grid-template-columns: 1fr 1fr; }
@@ -586,10 +594,21 @@ function buildHero(item, p) {
   sub.className = 'd-sub';
   sub.textContent = p.sub;
   info.append(title, sub);
-  if (p.description) {
+  if (p.description && p.descriptionEn) {
+    const row = document.createElement('div');
+    row.className = 'd-desc-row';
+    const kr = document.createElement('p');
+    kr.className = 'd-desc';
+    kr.textContent = p.description;
+    const en = document.createElement('p');
+    en.className = 'd-desc';
+    en.textContent = p.descriptionEn;
+    row.append(kr, en);
+    info.appendChild(row);
+  } else if (p.description || p.descriptionEn) {
     const desc = document.createElement('p');
     desc.className = 'd-desc';
-    desc.textContent = p.description;
+    desc.textContent = p.description || p.descriptionEn;
     info.appendChild(desc);
   }
   hero.appendChild(info);
