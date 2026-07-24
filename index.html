@@ -237,10 +237,11 @@ header {
 .media-group { width: 100%; }
 .media-item  { width: 100%; }
 
-/* 영상: 16:9 풀너비 */
+/* 영상: 16:9, 이미지와 동일한 좌우 여백 */
 .media-item.is-video {
   aspect-ratio: 16 / 9;
   background: #000;
+  padding: 0 42.5px;
 }
 .media-item.is-video video {
   width: 100%;
@@ -251,7 +252,7 @@ header {
 
 /* 이미지: 좌우 패딩 */
 .media-item.is-image {
-  padding: 0 170px;
+  padding: 0 42.5px;
 }
 .media-item.is-image img {
   width: 100%;
@@ -264,11 +265,8 @@ header {
   font-size: 11px;
   line-height: 1.55;
   color: rgba(255,255,255,0.42);
-  padding: 8px 20px 0;
+  padding: 8px 42.5px 0;
   white-space: pre-wrap;
-}
-.media-group.is-image .media-caption {
-  padding: 8px 170px 0;
 }
 
 /* 그리드 행 (2/4분할) */
@@ -276,7 +274,7 @@ header {
   width: 100%;
   display: grid;
   gap: 3px;
-  padding: 0 170px;
+  padding: 0 42.5px;
 }
 .grid-cell { min-width: 0; }
 .grid-cell img,
