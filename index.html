@@ -96,65 +96,6 @@ header {
 .btn-back:hover { color: var(--text); }
 .btn-back svg { width: 12px; height: 12px; flex-shrink: 0; }
 
-/* ── FLOATING CLOVER BUTTON ── */
-.btn-float-info {
-  position: fixed;
-  bottom: 36px;
-  right: 36px;
-  width: 64px;
-  height: 64px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 300;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.16)) drop-shadow(0 1px 3px rgba(0,0,0,0.1));
-  transition: filter 0.2s, transform 0.2s;
-}
-.btn-float-info:hover {
-  transform: scale(1.07);
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.22)) drop-shadow(0 2px 4px rgba(0,0,0,0.12));
-}
-/* clover shape: two rounded squares at 0° and 90° */
-.btn-float-info::before,
-.btn-float-info::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #bdd966;
-  border-radius: 50% 0 50% 0;
-}
-.btn-float-info::after { transform: rotate(90deg); }
-/* 4 button holes */
-.float-holes {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 38% 40%, rgba(60,80,5,0.38) 3px, transparent 4px),
-    radial-gradient(circle at 62% 40%, rgba(60,80,5,0.38) 3px, transparent 4px),
-    radial-gradient(circle at 38% 60%, rgba(60,80,5,0.38) 3px, transparent 4px),
-    radial-gradient(circle at 62% 60%, rgba(60,80,5,0.38) 3px, transparent 4px);
-}
-/* icon in center */
-.float-icon {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  font-style: italic;
-  font-family: Georgia, serif;
-  font-weight: 700;
-  color: rgba(45,65,0,0.7);
-  pointer-events: none;
-  line-height: 1;
-}
-
 /* ══════════════════════════════
    VIEW SWITCHING
    ══════════════════════════════ */
@@ -209,23 +150,84 @@ header {
 .work-cat  { font-size: 11px; color: var(--muted); }
 
 /* ══════════════════════════════
-   DETAIL VIEW  — 2-col editorial
+   DETAIL VIEW  — single column
    ══════════════════════════════ */
 #view-detail {
   padding-top: var(--hh);
-  display: grid;
-  grid-template-columns: 1fr 0px;   /* info panel starts collapsed */
-  align-items: start;
   min-height: calc(100vh - var(--hh));
   border-top: 1px solid var(--sep);
-  transition: grid-template-columns 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-#view-detail.panel-open {
-  grid-template-columns: 2fr 1fr;
+
+/* ── Hero: first media item + bleeding blurred backdrop + info, all in one dark block ── */
+.detail-hero {
+  position: relative;
+  overflow: hidden;
+  background: #111111;
+  padding-bottom: 44px;
+}
+.detail-hero-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: blur(90px) saturate(1.35) brightness(0.75);
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+.detail-hero-media {
+  position: relative;
+  z-index: 1;
+  padding: 50px;
+}
+.detail-hero-media.is-video { aspect-ratio: 16 / 9; }
+.detail-hero-media.is-video video {
+  width: 100%; height: 100%; display: block; object-fit: contain;
+}
+.detail-hero-media.is-image img { width: 100%; display: block; }
+
+.detail-hero-info {
+  position: relative;
+  z-index: 1;
+  padding: 8px 50px 0;
+  color: #fff;
+}
+.detail-hero-info .d-num {
+  font-size: 11px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  font-family: 'SuisseCond', var(--font);
+}
+.detail-hero-info .d-title {
+  font-size: clamp(24px, 2.4vw, 36px);
+  font-family: 'SuisseMono', monospace;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  word-break: keep-all;
+}
+.detail-hero-info .d-sub {
+  font-size: 13px;
+  font-family: 'SuisseCond', var(--font);
+  color: rgba(255,255,255,.65);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.detail-hero-info .d-desc {
+  font-size: 13px;
+  font-family: var(--font);
+  color: rgba(255,255,255,.8);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  max-width: 720px;
 }
 
 .detail-media-col {
-  border-right: 1px solid var(--sep);
   min-width: 0;
   padding: 15px 0;
   display: flex;
@@ -280,77 +282,6 @@ header {
 .grid-cell img,
 .grid-cell video { width: 100%; display: block; }
 .grid-cell .media-caption { padding: 6px 8px 0; }
-
-.detail-info-col {
-  position: sticky;
-  top: var(--hh);
-  height: calc(100vh - var(--hh));
-  overflow: hidden;              /* clip during collapse */
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-/* inner wrapper handles padding + scroll */
-.detail-info-inner {
-  flex: 1;
-  overflow-y: auto;
-  padding: 40px 28px;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transform: translateX(12px);
-  transition: opacity 0.35s 0.3s, transform 0.35s 0.3s;
-}
-#view-detail.panel-open .detail-info-inner {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.d-num {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: .08em;
-  margin-bottom: 10px;
-  font-family: 'SuisseCond', var(--font);
-}
-.d-title {
-  font-size: clamp(24px, 2.4vw, 36px);
-  font-family: 'SuisseMono', monospace;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  word-break: keep-all;
-}
-.d-divider {
-  height: 1px;
-  background: var(--sep);
-  margin-bottom: 20px;
-}
-.d-sub {
-  font-size: 13px;
-  font-family: 'SuisseCond', var(--font);
-  color: var(--muted);
-  line-height: 1.7;
-}
-.d-back-wrap {
-  margin-top: auto;
-  padding-top: 36px;
-}
-.d-back-wrap button {
-  font-size: 12px;
-  color: var(--muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: 'SuisseCond', var(--font);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-  transition: color .15s;
-}
-.d-back-wrap button:hover { color: var(--text); }
 
 /* ══════════════════════════════
    ABOUT VIEW  — 2-col
@@ -437,16 +368,13 @@ header {
   .h-row { grid-template-columns: 1fr 1fr; }
   .h-row .h-cell:nth-child(2) { display: none; }
   .works-grid { grid-template-columns: 1fr; }
-  #view-detail,
   #view-about { grid-template-columns: 1fr; }
-  .detail-media-col { border-right: none; }
-  .detail-info-col {
-    position: static; height: auto; overflow: visible;
-    border-top: 1px solid var(--sep);
-  }
-  .detail-info-inner {
-    opacity: 1 !important; transform: none !important;
-  }
+  .detail-hero-media,
+  .media-item.is-video,
+  .media-item.is-image,
+  .media-caption,
+  .media-grid-row { padding-left: 20px; padding-right: 20px; }
+  .detail-hero-info { padding-left: 20px; padding-right: 20px; }
   .about-side { position: static; border-top: 1px solid var(--sep); }
   .about-main { border-right: none; padding: 40px 24px; }
   .site-footer { grid-template-columns: 1fr 1fr; }
@@ -495,30 +423,9 @@ header {
 
 <!-- ── DETAIL VIEW ── -->
 <div id="view-detail" hidden>
+  <div class="detail-hero" id="d-hero"></div>
   <div class="detail-media-col" id="d-media"></div>
-  <div class="detail-info-col">
-    <div class="detail-info-inner">
-    <p class="d-num"  id="d-num"></p>
-    <h1 class="d-title" id="d-title"></h1>
-    <div class="d-divider"></div>
-    <p class="d-sub" id="d-sub"></p>
-    <div class="d-back-wrap">
-      <button id="detail-back-btn">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M8 2 4 6l4 4"/>
-        </svg>
-        모든 작업으로 돌아가기
-      </button>
-    </div>
-    </div><!-- /detail-info-inner -->
-  </div>
 </div>
-
-<!-- FLOATING CLOVER BUTTON -->
-<button class="btn-float-info" id="btn-info-toggle" hidden title="정보 보기">
-  <span class="float-holes"></span>
-  <span class="float-icon" id="float-icon">i</span>
-</button>
 
 <!-- ── ABOUT VIEW ── -->
 <div id="view-about" hidden>
@@ -623,32 +530,16 @@ const vDetail = document.getElementById('view-detail');
 const vAbout  = document.getElementById('view-about');
 const btnBack       = document.getElementById('btn-back');
 const emailLink     = document.getElementById('email-link');
-const btnInfoToggle = document.getElementById('btn-info-toggle');
-const floatIcon     = document.getElementById('float-icon');
 
 function showOnly(el) {
   [vGrid, vDetail, vAbout].forEach(v => v.setAttribute('hidden', ''));
   el.removeAttribute('hidden');
   window.scrollTo({ top: 0, behavior: 'instant' });
 
-  const inDetail = el === vDetail;
-  const inSub    = el !== vGrid;
+  const inSub = el !== vGrid;
   btnBack.style.display = inSub ? 'flex' : 'none';
   emailLink.style.display = inSub ? 'none' : '';
-  btnInfoToggle.hidden = !inDetail;
 }
-
-function updateToggleLabel() {
-  const open = vDetail.classList.contains('panel-open');
-  floatIcon.textContent = open ? '✕' : 'i';
-  floatIcon.style.fontStyle = open ? 'normal' : 'italic';
-  btnInfoToggle.title = open ? '정보 닫기' : '정보 보기';
-}
-
-btnInfoToggle.addEventListener('click', () => {
-  vDetail.classList.toggle('panel-open');
-  updateToggleLabel();
-});
 
 /* ── Detail ── */
 let _vpObserver = null;
@@ -658,22 +549,79 @@ function stopDetailVideos() {
   vDetail.querySelectorAll('video').forEach(v => v.pause());
 }
 
+function buildHero(item, idx, p) {
+  const hero = document.getElementById('d-hero');
+  hero.innerHTML = '';
+  if (!item) return;
+
+  // blurred backdrop, bled out behind the hero media + info text
+  const bg = item.t === 'video' ? document.createElement('video') : document.createElement('img');
+  bg.className = 'detail-hero-bg';
+  bg.src = item.s;
+  if (item.t === 'video') {
+    bg.muted = true; bg.loop = true; bg.playsInline = true; bg.autoplay = true; bg.preload = 'auto';
+  } else {
+    bg.decoding = 'async';
+  }
+  hero.appendChild(bg);
+
+  // foreground hero media (contained, matches the rest-of-media styling)
+  const wrap = document.createElement('div');
+  wrap.className = `detail-hero-media is-${item.t === 'video' ? 'video' : 'image'}`;
+  let fg;
+  if (item.t === 'video') {
+    fg = document.createElement('video');
+    fg.src = item.s;
+    fg.muted = true; fg.loop = true; fg.playsInline = true; fg.preload = 'metadata';
+    fg.style.cursor = 'pointer';
+    fg.addEventListener('click', () => fg.paused ? fg.play().catch(() => {}) : fg.pause());
+  } else {
+    fg = document.createElement('img');
+    fg.src = item.s; fg.loading = 'eager'; fg.decoding = 'async';
+  }
+  wrap.appendChild(fg);
+  hero.appendChild(wrap);
+
+  // title / sub / description sit on the same bled background
+  const info = document.createElement('div');
+  info.className = 'detail-hero-info';
+  const num = document.createElement('p');
+  num.className = 'd-num';
+  num.textContent = String(idx + 1).padStart(2, '0');
+  const title = document.createElement('h1');
+  title.className = 'd-title';
+  title.textContent = p.name;
+  const sub = document.createElement('p');
+  sub.className = 'd-sub';
+  sub.textContent = p.sub;
+  info.append(num, title, sub);
+  if (p.description) {
+    const desc = document.createElement('p');
+    desc.className = 'd-desc';
+    desc.textContent = p.description;
+    info.appendChild(desc);
+  }
+  hero.appendChild(info);
+}
+
 function goDetail(p, idx) {
   stopDetailVideos();
 
-  document.getElementById('d-num').textContent   = String(idx+1).padStart(2,'0');
-  document.getElementById('d-title').textContent = p.name;
-  document.getElementById('d-sub').textContent   = p.sub;
+  const media     = p.media || [];
+  const heroItem  = media[0];
+  const restMedia = media.slice(1);
+
+  buildHero(heroItem, idx, p);
 
   const col = document.getElementById('d-media');
   col.innerHTML = '';
 
   let i = 0;
-  while (i < p.media.length) {
-    const item = p.media[i];
+  while (i < restMedia.length) {
+    const item = restMedia[i];
     let runEnd = i + 1;
     if (item.grp) {
-      while (runEnd < p.media.length && p.media[runEnd].grp === item.grp) runEnd++;
+      while (runEnd < restMedia.length && restMedia[runEnd].grp === item.grp) runEnd++;
     }
     const runLen = runEnd - i;
 
@@ -681,7 +629,7 @@ function goDetail(p, idx) {
       const row = document.createElement('div');
       row.className = 'media-grid-row';
       row.style.gridTemplateColumns = `repeat(${runLen}, 1fr)`;
-      for (let k = i; k < runEnd; k++) row.appendChild(buildGridCell(p.media[k]));
+      for (let k = i; k < runEnd; k++) row.appendChild(buildGridCell(restMedia[k]));
       col.appendChild(row);
     } else {
       col.appendChild(buildMediaGroup(item));
@@ -690,11 +638,10 @@ function goDetail(p, idx) {
   }
 
   history.pushState({ view: 'detail', id: p.id }, '', `#${p.id}`);
-  vDetail.classList.remove('panel-open');
   showOnly(vDetail);
-  updateToggleLabel();
 
   // IntersectionObserver: play when in viewport, pause when out
+  // (the hero backdrop video is decorative and always autoplays, so it's excluded)
   _vpObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       e.isIntersecting
@@ -703,7 +650,7 @@ function goDetail(p, idx) {
     });
   }, { threshold: 0.2 });
 
-  col.querySelectorAll('video').forEach(v => _vpObserver.observe(v));
+  vDetail.querySelectorAll('.detail-hero-media video, #d-media video').forEach(v => _vpObserver.observe(v));
 }
 
 function buildMediaGroup(item) {
@@ -781,7 +728,6 @@ function buildGridCell(item) {
 
 function goGrid() {
   stopDetailVideos();
-  vDetail.classList.remove('panel-open');
   history.pushState({ view: 'grid' }, '', '#');
   showOnly(vGrid);
 }
@@ -796,7 +742,6 @@ function goAbout() {
 document.getElementById('brand-btn').addEventListener('click', goGrid);
 btnBack.addEventListener('click', goGrid);
 document.getElementById('works-link').addEventListener('click', e => { e.preventDefault(); goGrid(); });
-document.getElementById('detail-back-btn').addEventListener('click', goGrid);
 document.getElementById('about-link').addEventListener('click', e => { e.preventDefault(); goAbout(); });
 
 /* ── Browser history ── */
